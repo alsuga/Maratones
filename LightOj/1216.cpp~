@@ -1,0 +1,19 @@
+#include <cstdio>
+#include <cmath>
+
+#define pi acos(-1)
+
+int main(){
+    int casos=0,test;
+    int r1,r2,h,p;
+    double tmp, out;
+    scanf("%i", &test);
+    
+    while(test--){
+        scanf("%i %i %i %i",&r1,&r2,&h,&p);
+        tmp = ((r1 - r2)*p/(double)h);
+        out = pi * p * (tmp *(( tmp / 3.0 ) + r2)+ (r2*r2));
+        printf("Case %i: %.6f\n",++casos,out);
+    }
+    return 0;
+}
