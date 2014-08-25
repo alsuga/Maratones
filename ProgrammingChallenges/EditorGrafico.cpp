@@ -1,10 +1,8 @@
-#include <cstdio>
-#include <stack>
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int mat[250][250];
+char mat[250][250];
 int M,N;
 
 void crear(){
@@ -22,16 +20,18 @@ void pintar(){
 }
 
 void vertical(){
-  int x,y1,y2,c;
+  int x,y1,y2,c;  
   scanf("%i %i %i %c",&x,&y1,&y2,&c);
+  if(y1 > y2) swap(y1,y2);
   for(int i = y1-1; i < y2; i++){
     mat[i][x-1]=c;
   }
 }
 
 void horizontal(){
-  int x1,x2,y,c;
+  int x1,x2,y,c; 
   scanf("%i %i %i %c",&x1,&x2,&y,&c);
+  if(x1 > x2) swap(x1,x2); 
   for(int i = x1-1; i < x2; i++){
     mat[y-1][i]=c;
   }
@@ -39,20 +39,25 @@ void horizontal(){
 
 void rectangulo(){
   int x1,x2,y1,y2,c;
-  scanf("%i %i %i %i %c",&x1,&x2,&y1,&y2,&c);
+  scanf("%i %i %i %i %c",&x1,&y1,&x2,&y2,&c);
+  if(x1 > x2) swap(x1,x2);
+  if(y1 > y2) swap(y1,y2);
   for(int i = y1-1; i < y2; i++){
-    for (int j = x2-1; j < x2; j++){
+    for (int j = x1-1; j < x2; j++){
       mat[i][j] = c;
+
     }
   }
 }
 
 void rellenar(){
-  int x,y,c, l1, l2;
+  int x,y,c, l1, l2,tmp;
   scanf("%i %i %c",&x,&y,&c);
   if(mat[y-1][x-1] == c) return ;
   stack< pair<int,int> > pila;
+  set <pair <int,int> > se;
   pila.push(make_pair(y-1,x-1));
+  se.insert(make_pair(y-1,x-1));
   char color = mat[y-1][x-1];
   mat[y-1][x-1] = c;
   while(!pila.empty()){
@@ -61,19 +66,27 @@ void rellenar(){
     pila.pop();
     if(x-1 >= 0) if(mat[x-1][y] == color){
       mat[x-1][y] = c;
-      pila.push(make_pair(x-1,y)); 
+      tmp = se.size();
+      se.insert(make_pair(x-1,y));
+      if(tmp < se.size()) pila.push(make_pair(x-1,y)); 
     }
     if(x+1 < N) if(mat[x+1][y] == color){
       mat[x+1][y] = c;
-      pila.push(make_pair(x+1,y)); 
+      tmp = se.size();
+      se.insert(make_pair(x+1,y));
+      if(tmp < se.size()) pila.push(make_pair(x+1,y)); 
     }
     if(y-1 >= 0) if(mat[x][y-1] == color){
       mat[x][y-1] = c;
-      pila.push(make_pair(x,y-1)); 
+      tmp = se.size();
+      se.insert(make_pair(x,y-1));
+      if(tmp < se.size()) pila.push(make_pair(x,y-1)); 
     }
     if(y+1 < M) if(mat[x][y+1] == color){
       mat[x][y+1] = c;
-      pila.push(make_pair(x,y+1)); 
+      tmp = se.size();
+      se.insert(make_pair(x,y+1));
+      if(tmp < se.size()) pila.push(make_pair(x,y+1)); 
     }
   } 
 }
