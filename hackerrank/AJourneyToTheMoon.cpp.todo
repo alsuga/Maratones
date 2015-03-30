@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define __ ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+typedef vector<vector<int> > graph;
+typedef vector<bool> vecb;
+
+void dfs(graph &gp, vecb &visited, int nodo){
+  stack<int> st;
+  st.push(nodo);
+  while(!st.empty()){
+    nodo = st.top();
+    st.pop();
+    visited[nodo] = true;
+    for(int i = 0; i < gp[nodo].size(); i++){
+      if(visited[gp[nodo][i]]) continue;
+      st.push(gp[nodo][i]);
+    }
+  }
+}
+
+
+int main(){
+  int n,l,a,b;
+  cin>>n>>l;
+  graph ast(n);
+  vecb visited(n,false);
+  for(int i = 0; i < l; i++){
+    cin>>a>>b;
+    ast[a-1].push_back(b-1);
+    ast[b-1].push_back(a-1);
+  }
+  int out = 0;
+  for(int i = 0; i < n; i++){
+    if(visited[i]) continue;
+    out++;
+    dfs(ast,visited,i);
+  }
+  cout<<out<<endl;
+  return 0;
+}

@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
   ios_base::sync_with_stdio(false);cin.tie(NULL);
-  int maxp=0,maxc=0,p,c,test,mp=0;
+  int maxp=0,maxc=0,p,c,test,mp=0, minp=100001,minc = 100001;
   cin>>test;
   while(test--){
     cin>>p>>c;
