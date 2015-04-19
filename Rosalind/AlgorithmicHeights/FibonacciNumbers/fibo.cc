@@ -1,20 +1,19 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 #define __ ios_base::sync_with_stdio(false);cin.tie(NULL);
 #define endl '\n'
 
-int main(){
-  int in; cin>> in;
-  if(in == 0 or in == 1)
-    cout<<in<<endl;
-  else {
-    int a = 0, b = 1, tmp;
-    for(int i = 1; i < in; i++){
-      tmp = b;
-      b += a;
-      a = tmp;
-    }
-    cout<<b<<endl;
+int main(){__
+  freopen("fibo.in", "r", stdin);
+  freopen("fibo.out", "w", stdout);
+  int in;
+  long long a[26];
+  a[0] = 0;
+  a[1] = 1;
+  for(int i = 2; i <= 25; i++){
+    a[i] = a[i-1] + a[i-2];
   }
+  cin>> in;
+  cout<<a[in]<<endl;
   return 0;
 }
