@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.StringTokenizer;
-import java.math.BigInteger
-;
+import java.math.BigInteger;
+
 public class Template {
 
     public static void main(String []args) throws IOException {
