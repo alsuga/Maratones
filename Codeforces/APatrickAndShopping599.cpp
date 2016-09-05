@@ -11,4 +11,5 @@ int main() {
   act = min (act, 2 * x + 2 * z);
   act = min (act, 2 * z + 2 * y);
   cout << act << endl;
+  return 0;
 }
