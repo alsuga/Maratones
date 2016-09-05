@@ -1,6 +1,7 @@
 DVanyaAndComputerGame.cpp
 CGlassCarving527.cpp
 DBadLuckIsland540.cpp
-
 CWoodcutters545.cpp
 BMikeAndFun548.cpp
+BSpongeBobAndJoke599.cpp
+CBarcode255.cpp
